@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: wtm-evb-party
+spec:
+  schedule: "*/5 * * * *"
+  suspend: false
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: wtm-ds-evb
+            image: 644500056682.dkr.ecr.us-east-1.amazonaws.com/wtm_ds_evb:v1.1.1
+            env:
+              - name: ENV
+                value: "PROD"
+              - name: API_SERVER_URL
+                value: "http://wtm-api-service:80/api/events/batch"
+              - name: PULL_URL
+                value: "https://www.eventbrite.com/d/ga--atlanta/free--food-and-drink--events--today/?aff=oddtdtcreator&page=1"
+            # Other configurations...
+          imagePullSecrets:
+          - name: wtm-svc-2
+          restartPolicy: OnFailure
+

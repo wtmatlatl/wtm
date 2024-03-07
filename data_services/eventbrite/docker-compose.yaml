@@ -1,0 +1,13 @@
+version: '3'
+services:
+  wtm_ds_evb:
+    image: wtm_ds_evb:v1
+    networks:
+      - wtmnet
+    environment:
+      - PULL_URL=https://www.eventbrite.com/d/ga--atlanta/free--food-and-drink--events--today/?aff=oddtdtcreator&page=1
+      - API_SERVER_URL=http://wtm_api:3000/api/events/batch
+      -ENV=PROD
+networks:
+  wtmnet:
+    external: true

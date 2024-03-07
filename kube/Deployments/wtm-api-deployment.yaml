@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wtm-api-deployment2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wtm-api
+  template:
+    metadata:
+      labels:
+        app: wtm-api
+    spec:
+      containers:
+      - name: wtm-api
+        image: 644500056682.dkr.ecr.us-east-1.amazonaws.com/wtm_api:v1.1.1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: DATABASE_URL
+          value: "mongodb://ecalhoun2024wtm:Calhoun2024%21%24%5E%2A@35.169.199.129:27017/Events?authSource=admin"
+      imagePullSecrets:
+      - name: wtm-svc-2

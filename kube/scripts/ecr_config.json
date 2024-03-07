@@ -1,0 +1,10 @@
+{
+  "auths": {
+    "644500056682.dkr.ecr.us-east-1.amazonaws.com": {
+      "username": "AWS",
+      "password": "AUTH_TOKEN",
+      "auth": "BASE64_ENCODED(AWS:AUTH_TOKEN)"
+    }
+  }
+}
+

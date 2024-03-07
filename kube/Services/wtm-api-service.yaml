@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wtm-api-service
+spec:
+  type: LoadBalancer  # Exposes the service externally using a cloud provider's load balancer
+  selector:
+    app: wtm-api
+  ports:
+    - protocol: TCP
+      port: 80  # Port accessible by users
+      targetPort: 3000  # Container port
+
